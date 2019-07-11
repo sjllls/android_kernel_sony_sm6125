@@ -16,8 +16,8 @@
 #include <linux/types.h>
 #include <uapi/media/cam_isp.h>
 #include "cam_isp_hw_mgr_intf.h"
-#include "cam_ife_hw_mgr.h"
-#include "cam_hw_intf.h"
+#include "../../cam_ife_hw_mgr.h"
+#include "../../../../cam_core/cam_hw_intf.h"
 #include "cam_packet_util.h"
 
 /* enum cam_isp_cdm_bl_type - isp cdm packet type */
