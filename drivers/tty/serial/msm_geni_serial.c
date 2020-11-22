@@ -10,6 +10,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+/*
+ * NOTE: This file has been modified by Sony Mobile Communications Inc.
+ * Modifications are Copyright (c) 2018 Sony Mobile Communications Inc,
+ * and licensed under the license of the file.
+ */
 
 #include <linux/bitmap.h>
 #include <linux/bitops.h>
@@ -304,7 +309,7 @@ static bool check_transfers_inflight(struct uart_port *uport)
 	return xfer_on;
 }
 
-static void wait_for_transfers_inflight(struct uart_port *uport)
+static int wait_for_transfers_inflight(struct uart_port *uport)
 {
 	int iter = 0;
 	struct msm_geni_serial_port *port = GET_DEV_PORT(uport);
@@ -313,7 +318,7 @@ static void wait_for_transfers_inflight(struct uart_port *uport)
 	geni_status = geni_read_reg_nolog(uport->membase, SE_GENI_STATUS);
 	/* Possible stop rx is called before this. */
 	if (!(geni_status & S_GENI_CMD_ACTIVE))
-		return;
+		goto exit;
 
 	while (iter < WAIT_XFER_MAX_ITER) {
 		if (check_transfers_inflight(uport)) {
@@ -337,6 +342,8 @@ static void wait_for_transfers_inflight(struct uart_port *uport)
 			"%s IOS 0x%x geni status 0x%x rx: fifo 0x%x dma 0x%x\n",
 		__func__, geni_ios, geni_status, rx_fifo_status, rx_dma);
 	}
+exit:
+	return 0;
 }
 
 static int vote_clock_on(struct uart_port *uport)
@@ -2042,6 +2049,9 @@ static void msm_geni_serial_set_termios(struct uart_port *uport,
 	struct msm_geni_serial_port *port = GET_DEV_PORT(uport);
 	unsigned long clk_rate;
 	unsigned long flags;
+
+	if (!termios->c_cflag)
+		return;
 
 	if (!uart_console(uport)) {
 		int ret = msm_geni_serial_power_on(uport);
