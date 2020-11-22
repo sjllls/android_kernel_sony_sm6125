@@ -87,3 +87,4 @@ obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
 obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
 obj-$(CONFIG_NFC_PN553_DEVICES) += pn553.o
 obj-$(CONFIG_INPUT_FP_EGIS)             += egistec/
+obj-$(CONFIG_SONY_CAMERA)               += sony_camera/
