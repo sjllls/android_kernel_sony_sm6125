@@ -368,6 +368,10 @@ config NFC_PN553_DEVICES
 
 	  You can say N here if you don't have any SPI connected to your computer.
 
+config SONY_CAMERA
+        tristate "Sony camera"
+        default n
+
 config INPUT_WISTRON_BTNS
 	tristate "x86 Wistron laptop button interface"
 	depends on X86_32
