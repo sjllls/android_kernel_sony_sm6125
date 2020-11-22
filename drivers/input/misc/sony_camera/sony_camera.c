@@ -2050,8 +2050,12 @@ static void __exit sony_camera_exit_module(void)
 	unregister_chrdev_region(dev_id, sensor_num);
 }
 
+#ifdef MODULE
 module_init(sony_camera_init_module);
 module_exit(sony_camera_exit_module);
+#else
+late_initcall(sony_camera_init_module);
+#endif
 
 MODULE_DESCRIPTION("SONY camera sensor driver");
 MODULE_LICENSE("GPL v2");
