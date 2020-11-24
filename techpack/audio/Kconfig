@@ -142,6 +142,8 @@ config RX_MACRO
 	tristate "RX_MACRO"
 config TX_MACRO
 	tristate "TX_MACRO"
+config VA_MACRO
+	tristate "VA_MACRO"
 config SND_SOC_WCD_IRQ
 	tristate "SND_SOC_WCD_IRQ"
 config SND_SOC_WCD937X
