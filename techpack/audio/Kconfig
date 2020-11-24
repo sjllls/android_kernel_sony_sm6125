@@ -134,6 +134,8 @@ config SND_SOC_SM8150
 	tristate "SND_SOC_SM8150"
 config SND_SOC_SM6150
 	tristate "SND_SOC_SM6150"
+config SND_SOC_BOLERO
+	tristate "SND_SOC_BOLERO"
 config WSA_MACRO
 	tristate "WSA_MACRO"
 config RX_MACRO
