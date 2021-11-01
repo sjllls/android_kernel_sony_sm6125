@@ -62,7 +62,7 @@ int fscrypt_find_storage_type(char **device)
 	}
 	return -EINVAL;
 }
-EXPORT_SYMBOL_GPL(fscrypt_find_storage_type);
+EXPORT_SYMBOL(fscrypt_find_storage_type);
 
 static unsigned int fscrypt_get_dun_bytes(const struct fscrypt_info *ci)
 {
